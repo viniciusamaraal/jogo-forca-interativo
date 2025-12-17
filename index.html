@@ -504,7 +504,7 @@
 
   function normalizeLang(input) {
     if (!input) return null;
-    input = input.toLowerCase();
+    input = String(input).toLowerCase();
 
     if (input === "pt" || input === "pt-br") return "pt-BR";
     if (input === "en") return "en";
@@ -518,40 +518,53 @@
     return normalizeLang(params.get("lang"));
   }
 
-  function setLang(lang) {
-    if (!supported.includes(lang)) lang = "pt-BR";
+  function setLang(lang, { syncUrl = false } = {}) {
+    if (!supported.includes(lang)) lang = "en"; // EN default
 
+    // Update <html lang="">
     document.documentElement.lang = lang;
 
+    // Toggle translated blocks
     document.querySelectorAll("[data-lang]").forEach(el => {
       el.classList.toggle("active", el.getAttribute("data-lang") === lang);
     });
 
+    // Toggle pressed state in buttons
     document.querySelectorAll("[data-set-lang]").forEach(btn => {
-      btn.setAttribute(
-        "aria-pressed",
-        btn.getAttribute("data-set-lang") === lang ? "true" : "false"
-      );
+      const isActive = btn.getAttribute("data-set-lang") === lang;
+      btn.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
 
-    try {
-      localStorage.setItem(STORAGE_KEY, lang);
-    } catch (_) {}
+    // Persist
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch (_) {}
+
+    // Optionally keep URL in sync (?lang=xx) without reloading
+    if (syncUrl) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", lang);
+      window.history.replaceState({}, "", url);
+    }
   }
 
+  // Bind click handlers (THIS was missing)
+  document.querySelectorAll("[data-set-lang]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const lang = btn.getAttribute("data-set-lang");
+      setLang(lang, { syncUrl: true });
+    });
+  });
+
   (function init() {
-    // Priority order:
+    // Priority:
     // 1) Query string (?lang=)
     // 2) localStorage
     // 3) Browser language
-    let lang =
+    // 4) Default: EN
+    const lang =
       getLangFromQuery() ||
       (() => {
-        try {
-          return normalizeLang(localStorage.getItem(STORAGE_KEY));
-        } catch (_) {
-          return null;
-        }
+        try { return normalizeLang(localStorage.getItem(STORAGE_KEY)); }
+        catch (_) { return null; }
       })() ||
       (() => {
         const nav = (navigator.language || "").toLowerCase();
@@ -559,10 +572,13 @@
         if (nav.startsWith("es")) return "es";
         if (nav.startsWith("en")) return "en";
         return "en";
-      })();
+      })() ||
+      "en";
 
-    setLang(lang);
+    // On initial load: if ?lang= is present, also sync URL normalization
+    setLang(lang, { syncUrl: Boolean(getLangFromQuery()) });
   })();
 </script>
+
 </body>
 </html>
