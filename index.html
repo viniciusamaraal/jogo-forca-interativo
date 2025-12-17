@@ -2,9 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Jogo da Forca Interativo – Suporte e Exclusão de Dados</title>
+  <title>Jogo da Forca Interativo – Support and Data Deletion</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Página oficial de suporte, privacidade e solicitação de exclusão de dados do aplicativo Jogo da Forca Interativo." />
+  <meta name="description" content="Official Support, Privacy, and Data Deletion page for the Jogo da Forca Interativo app." />
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
@@ -18,13 +18,61 @@
     header {
       background: #1f2933;
       color: #fff;
-      padding: 28px 18px;
+      padding: 22px 18px 18px;
       text-align: center;
+      position: relative;
     }
 
     header h1 {
       margin: 0;
       font-size: 1.8rem;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      opacity: 0.95;
+    }
+
+    .lang-selector {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 8px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+    }
+
+    .lang-selector button {
+      width: 38px;
+      height: 28px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+    }
+
+    .lang-selector button:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.35);
+    }
+
+    .lang-selector button[aria-pressed="true"] {
+      background: rgba(37, 99, 235, 0.65);
+      border-color: rgba(37, 99, 235, 0.9);
     }
 
     main {
@@ -69,154 +117,452 @@
       color: #666;
       font-size: 0.85rem;
     }
+
+    /* i18n visibility */
+    [data-lang] { display: none; }
+    [data-lang].active { display: block; }
   </style>
 </head>
 
 <body>
 <header>
+  <div class="lang-selector" aria-label="Language selector">
+    <!-- Flags via emoji (no external assets). Replace with images if desired. -->
+    <button type="button" data-set-lang="pt-BR" aria-pressed="true" title="Português (Brasil)">🇧🇷</button>
+    <button type="button" data-set-lang="en" aria-pressed="false" title="English">🇺🇸</button>
+    <button type="button" data-set-lang="es" aria-pressed="false" title="Español">🇪🇸</button>
+  </div>
+
   <h1>Jogo da Forca Interativo</h1>
-  <p>Página oficial de Suporte, Privacidade e Exclusão de Dados</p>
+
+  <p data-lang="pt-BR" class="active">Página oficial de Suporte, Privacidade e Exclusão de Dados</p>
+  <p data-lang="en">Official Support, Privacy, and Data Deletion page</p>
+  <p data-lang="es">Página oficial de Soporte, Privacidad y Eliminación de Datos</p>
 </header>
 
 <main>
 
-  <!-- SOBRE O APP -->
+  <!-- ABOUT -->
   <section id="about">
-    <h2>Sobre o Aplicativo</h2>
-    <p>
-      O <strong>Jogo da Forca Interativo</strong> é uma versão moderna do clássico jogo de adivinhação de palavras.
-      O app traz diferentes categorias, três níveis de dificuldade, sistema de pontuação e ranking global.
-      Jogadores autenticados têm acesso a opções extras de personalização e participação no ranking.
-    </p>
+    <div data-lang="pt-BR" class="active">
+      <h2>Sobre o Aplicativo</h2>
+      <p>
+        O <strong>Jogo da Forca Interativo</strong> é uma versão moderna do clássico jogo de adivinhação de palavras.
+        O app traz diferentes categorias, três níveis de dificuldade, sistema de pontuação e ranking global.
+        Jogadores autenticados têm acesso a opções extras de personalização e participação no ranking.
+      </p>
+    </div>
+
+    <div data-lang="en">
+      <h2>About the App</h2>
+      <p>
+        <strong>Jogo da Forca Interativo</strong> is a modern version of the classic word-guessing Hangman game.
+        The app offers multiple categories, three difficulty levels, a scoring system, and a global leaderboard.
+        Authenticated players can access additional customization options and participate in the leaderboard.
+      </p>
+    </div>
+
+    <div data-lang="es">
+      <h2>Acerca de la Aplicación</h2>
+      <p>
+        <strong>Jogo da Forca Interativo</strong> es una versión moderna del clásico juego del ahorcado para adivinar palabras.
+        La app incluye varias categorías, tres niveles de dificultad, sistema de puntuación y ranking global.
+        Los jugadores autenticados pueden acceder a opciones adicionales de personalización y participar en el ranking.
+      </p>
+    </div>
   </section>
 
-  <!-- SUPORTE -->
+  <!-- SUPPORT -->
   <section id="support">
-    <h2>Suporte</h2>
-    <p>
-      Caso tenha dúvidas, sugestões ou queira relatar um problema, entre em contato com nosso suporte:
-    </p>
-    <p><strong>📧 k19tech@gmail.com</strong></p>
+    <div data-lang="pt-BR" class="active">
+      <h2>Suporte</h2>
+      <p>Caso tenha dúvidas, sugestões ou queira relatar um problema, entre em contato com nosso suporte:</p>
+      <p><strong>📧 k19tech@gmail.com</strong></p>
+      <p>Ao enviar sua mensagem, informe:</p>
+      <ul>
+        <li>O nome do aplicativo: <strong>Jogo da Forca Interativo</strong></li>
+        <li>Seu dispositivo e versão do sistema operacional (opcional)</li>
+        <li>Descrição do problema ou dúvida</li>
+      </ul>
+    </div>
 
-    <p>
-      Ao enviar sua mensagem, informe:
-    </p>
-    <ul>
-      <li>O nome do aplicativo: <strong>Jogo da Forca Interativo</strong></li>
-      <li>Seu dispositivo e versão do sistema operacional (opcional)</li>
-      <li>Descrição do problema ou dúvida</li>
-    </ul>
+    <div data-lang="en">
+      <h2>Support</h2>
+      <p>If you have questions, suggestions, or want to report an issue, please contact our support:</p>
+      <p><strong>📧 k19tech@gmail.com</strong></p>
+      <p>When emailing us, please include:</p>
+      <ul>
+        <li>App name: <strong>Jogo da Forca Interativo</strong></li>
+        <li>Your device and operating system version (optional)</li>
+        <li>A description of the issue or question</li>
+      </ul>
+    </div>
+
+    <div data-lang="es">
+      <h2>Soporte</h2>
+      <p>Si tienes dudas, sugerencias o deseas reportar un problema, contáctanos:</p>
+      <p><strong>📧 k19tech@gmail.com</strong></p>
+      <p>Al enviar tu mensaje, incluye:</p>
+      <ul>
+        <li>Nombre de la aplicación: <strong>Jogo da Forca Interativo</strong></li>
+        <li>Tu dispositivo y versión del sistema operativo (opcional)</li>
+        <li>Descripción del problema o consulta</li>
+      </ul>
+    </div>
   </section>
 
-  <!-- POLÍTICA DE PRIVACIDADE -->
+  <!-- PRIVACY POLICY -->
   <section id="privacy">
-    <h2>Política de Privacidade</h2>
-    <p><em>Última atualização: Dezembro de 2025</em></p>
+    <div data-lang="pt-BR" class="active">
+      <h2>Política de Privacidade</h2>
+      <p><em>Última atualização: Dezembro de 2025</em></p>
 
-    <h3>1. Informações coletadas</h3>
-    <p>Podemos coletar:</p>
-    <ul>
-      <li>Dados de autenticação (e-mail, UID)</li>
-      <li>Pontuações e dados de jogo</li>
-      <li>Preferências de categorias, níveis e exibição de dicas</li>
-      <li>Logs de uso e diagnósticos (Crashlytics)</li>
-    </ul>
+      <h3>1. Informações coletadas</h3>
+      <p>Podemos coletar:</p>
+      <ul>
+        <li>Dados de autenticação (e-mail, UID)</li>
+        <li>Pontuações e dados de jogo</li>
+        <li>Preferências de categorias, níveis e exibição de dicas</li>
+        <li>Logs de uso e diagnósticos (Crashlytics)</li>
+      </ul>
 
-    <h3>2. Como usamos seus dados</h3>
-    <ul>
-      <li>Para funcionamento do jogo</li>
-      <li>Para manter rankings e pontuações</li>
-      <li>Para personalizar sua experiência</li>
-      <li>Para melhorar o desempenho do app</li>
-    </ul>
+      <h3>2. Como usamos seus dados</h3>
+      <ul>
+        <li>Para funcionamento do jogo</li>
+        <li>Para manter rankings e pontuações</li>
+        <li>Para personalizar sua experiência</li>
+        <li>Para melhorar o desempenho do app</li>
+      </ul>
 
-    <h3>3. Compartilhamento</h3>
-    <p>
-      Não vendemos dados. Alguns dados podem ser processados por serviços como Firebase, apenas para
-      permitir autenticação, armazenamento e análises técnicas.
-    </p>
+      <h3>3. Compartilhamento</h3>
+      <p>
+        Não vendemos dados. Alguns dados podem ser processados por serviços como Firebase, apenas para
+        permitir autenticação, armazenamento e análises técnicas.
+      </p>
 
-    <h3>4. Segurança</h3>
-    <p>
-      Empregamos práticas razoáveis de proteção, embora nenhum sistema seja completamente infalível.
-    </p>
+      <h3>4. Segurança</h3>
+      <p>
+        Empregamos práticas razoáveis de proteção, embora nenhum sistema seja completamente infalível.
+      </p>
 
-    <h3>5. Direitos do Usuário</h3>
-    <p>
-      Você pode solicitar acesso, correção ou exclusão dos seus dados.
-      A exclusão da conta pode ser feita diretamente no aplicativo, conforme descrito na seção
-      <strong>Solicitação de Exclusão de Dados</strong>, ou por meio de contato por e-mail.
-    </p>
+      <h3>5. Direitos do Usuário</h3>
+      <p>
+        Você pode solicitar acesso, correção ou exclusão dos seus dados.
+        A exclusão da conta pode ser feita diretamente no aplicativo, conforme descrito na seção
+        <strong>Solicitação de Exclusão de Dados</strong>, ou por meio de contato por e-mail.
+      </p>
+    </div>
+
+    <div data-lang="en">
+      <h2>Privacy Policy</h2>
+      <p><em>Last updated: December 2025</em></p>
+
+      <h3>1. Information we collect</h3>
+      <p>We may collect:</p>
+      <ul>
+        <li>Authentication data (email, UID)</li>
+        <li>Scores and gameplay data</li>
+        <li>Preferences (categories, difficulty levels, hint display)</li>
+        <li>Usage logs and diagnostics (Crashlytics)</li>
+      </ul>
+
+      <h3>2. How we use your data</h3>
+      <ul>
+        <li>To operate the game</li>
+        <li>To maintain leaderboards and scores</li>
+        <li>To personalize your experience</li>
+        <li>To improve app performance</li>
+      </ul>
+
+      <h3>3. Sharing</h3>
+      <p>
+        We do not sell data. Some data may be processed by services such as Firebase solely to
+        enable authentication, storage, and technical analytics.
+      </p>
+
+      <h3>4. Security</h3>
+      <p>
+        We use reasonable safeguards, but no system can be guaranteed 100% secure.
+      </p>
+
+      <h3>5. User rights</h3>
+      <p>
+        You can request access to, correction of, or deletion of your data.
+        Account deletion can be performed directly in the app as described in the
+        <strong>Data Deletion Request</strong> section, or by contacting us via email.
+      </p>
+    </div>
+
+    <div data-lang="es">
+      <h2>Política de Privacidad</h2>
+      <p><em>Última actualización: Diciembre de 2025</em></p>
+
+      <h3>1. Información recopilada</h3>
+      <p>Podemos recopilar:</p>
+      <ul>
+        <li>Datos de autenticación (correo electrónico, UID)</li>
+        <li>Puntuaciones y datos de juego</li>
+        <li>Preferencias (categorías, niveles y visualización de pistas)</li>
+        <li>Registros de uso y diagnósticos (Crashlytics)</li>
+      </ul>
+
+      <h3>2. Cómo usamos tus datos</h3>
+      <ul>
+        <li>Para el funcionamiento del juego</li>
+        <li>Para mantener rankings y puntuaciones</li>
+        <li>Para personalizar tu experiencia</li>
+        <li>Para mejorar el rendimiento de la app</li>
+      </ul>
+
+      <h3>3. Compartición</h3>
+      <p>
+        No vendemos datos. Algunos datos pueden ser procesados por servicios como Firebase únicamente para
+        habilitar autenticación, almacenamiento y análisis técnicos.
+      </p>
+
+      <h3>4. Seguridad</h3>
+      <p>
+        Aplicamos medidas razonables de protección, aunque ningún sistema es completamente infalible.
+      </p>
+
+      <h3>5. Derechos del usuario</h3>
+      <p>
+        Puedes solicitar acceso, corrección o eliminación de tus datos.
+        La eliminación de la cuenta puede realizarse directamente en la aplicación, según se describe en la sección
+        <strong>Solicitud de Eliminación de Datos</strong>, o a través del contacto por correo electrónico.
+      </p>
+    </div>
   </section>
 
-  <!-- EXCLUSÃO DE DADOS -->
+  <!-- DATA DELETION -->
   <section id="data-deletion">
-    <h2>Solicitação de Exclusão de Dados</h2>
+    <div data-lang="pt-BR" class="active">
+      <h2>Solicitação de Exclusão de Dados</h2>
 
-    <h3>1. Como solicitar</h3>
-    <p>
-      Agora você pode excluir sua conta diretamente pelo aplicativo de forma imediata:
-    </p>
-    <ul>
-      <li>Abra o <strong>Jogo da Forca Interativo</strong> e certifique-se de que está logado;</li>
-      <li>Clique no ícone no canto superior direito da tela;</li>
-      <li>Selecione a opção <strong>“Excluir Conta”</strong>;</li>
-      <li>Confirme a ação quando solicitado.</li>
-    </ul>
-    <p>
-      A exclusão será efetuada imediatamente após a confirmação.
-    </p>
+      <h3>1. Como solicitar</h3>
+      <p>Agora você pode excluir sua conta diretamente pelo aplicativo de forma imediata:</p>
+      <ul>
+        <li>Abra o <strong>Jogo da Forca Interativo</strong> e certifique-se de que está logado;</li>
+        <li>Clique no ícone no canto superior direito da tela;</li>
+        <li>Selecione a opção <strong>“Excluir Conta”</strong>;</li>
+        <li>Confirme a ação quando solicitado.</li>
+      </ul>
+      <p>A exclusão será efetuada imediatamente após a confirmação.</p>
 
-    <p>
-      Caso você não tenha mais acesso ao aplicativo ou à conta logada, também é possível solicitar a exclusão
-      por e-mail:
-    </p>
-    <p><strong>📧 k19tech@gmail.com</strong></p>
+      <p>Caso você não tenha mais acesso ao aplicativo ou à conta logada, também é possível solicitar a exclusão por e-mail:</p>
+      <p><strong>📧 k19tech@gmail.com</strong></p>
 
-    <p>No e-mail, inclua:</p>
-    <ul>
-      <li>Seu e-mail de login</li>
-      <li>O nome do aplicativo: <strong>Jogo da Forca Interativo</strong></li>
-      <li>A frase: “Solicito exclusão dos meus dados.”</li>
-    </ul>
+      <p>No e-mail, inclua:</p>
+      <ul>
+        <li>Seu e-mail de login</li>
+        <li>O nome do aplicativo: <strong>Jogo da Forca Interativo</strong></li>
+        <li>A frase: “Solicito exclusão dos meus dados.”</li>
+      </ul>
 
-    <h3>2. O que será excluído</h3>
-    <ul>
-      <li>Conta de autenticação (e-mail/UID)</li>
-      <li>Pontuações e histórico de sessões</li>
-      <li>Preferências personalizadas</li>
-      <li>Dados vinculados ao seu usuário no banco de dados</li>
-    </ul>
+      <h3>2. O que será excluído</h3>
+      <ul>
+        <li>Conta de autenticação (e-mail/UID)</li>
+        <li>Pontuações e histórico de sessões</li>
+        <li>Preferências personalizadas</li>
+        <li>Dados vinculados ao seu usuário no banco de dados</li>
+      </ul>
 
-    <h3>3. O que pode ser mantido temporariamente</h3>
-    <p>
-      Alguns registros técnicos podem ser mantidos por até 30 dias devido a exigências operacionais:
-    </p>
-    <ul>
-      <li>Logs anonimizados</li>
-      <li>Registros de erro (Crashlytics)</li>
-    </ul>
+      <h3>3. O que pode ser mantido temporariamente</h3>
+      <p>Alguns registros técnicos podem ser mantidos por até 30 dias devido a exigências operacionais:</p>
+      <ul>
+        <li>Logs anonimizados</li>
+        <li>Registros de erro (Crashlytics)</li>
+      </ul>
 
-    <h3>4. Confirmação da Exclusão</h3>
-    <p>
-      Ao utilizar a opção <strong>“Excluir Conta”</strong> dentro do app, a exclusão é realizada imediatamente,
-      e seus dados deixam de ser utilizados pelo jogo.
-    </p>
-    <p>
-      Para solicitações feitas por e-mail, após a remoção, você receberá uma mensagem confirmando que todos
-      os dados vinculados à sua conta foram apagados permanentemente, exceto pelos registros técnicos mantidos
-      temporariamente conforme descrito acima.
-    </p>
+      <h3>4. Confirmação da Exclusão</h3>
+      <p>
+        Ao utilizar a opção <strong>“Excluir Conta”</strong> dentro do app, a exclusão é realizada imediatamente,
+        e seus dados deixam de ser utilizados pelo jogo.
+      </p>
+      <p>
+        Para solicitações feitas por e-mail, após a remoção, você receberá uma mensagem confirmando que todos
+        os dados vinculados à sua conta foram apagados permanentemente, exceto pelos registros técnicos mantidos
+        temporariamente conforme descrito acima.
+      </p>
+    </div>
+
+    <div data-lang="en">
+      <h2>Data Deletion Request</h2>
+
+      <h3>1. How to request deletion</h3>
+      <p>You can now delete your account directly in the app with immediate effect:</p>
+      <ul>
+        <li>Open <strong>Jogo da Forca Interativo</strong> and make sure you are signed in;</li>
+        <li>Tap the icon in the top-right corner of the screen;</li>
+        <li>Select <strong>“Delete Account”</strong>;</li>
+        <li>Confirm when prompted.</li>
+      </ul>
+      <p>Deletion will be performed immediately after confirmation.</p>
+
+      <p>If you no longer have access to the app or your signed-in account, you can also request deletion via email:</p>
+      <p><strong>📧 k19tech@gmail.com</strong></p>
+
+      <p>In your email, include:</p>
+      <ul>
+        <li>Your login email</li>
+        <li>App name: <strong>Jogo da Forca Interativo</strong></li>
+        <li>The phrase: “I request deletion of my data.”</li>
+      </ul>
+
+      <h3>2. What will be deleted</h3>
+      <ul>
+        <li>Authentication account (email/UID)</li>
+        <li>Scores and session history</li>
+        <li>Personalized preferences</li>
+        <li>User-linked data stored in our database</li>
+      </ul>
+
+      <h3>3. What may be temporarily retained</h3>
+      <p>Some technical records may be retained for up to 30 days due to operational requirements:</p>
+      <ul>
+        <li>Anonymized logs</li>
+        <li>Error reports (Crashlytics)</li>
+      </ul>
+
+      <h3>4. Deletion confirmation</h3>
+      <p>
+        When using <strong>“Delete Account”</strong> inside the app, deletion happens immediately,
+        and your data is no longer used by the game.
+      </p>
+      <p>
+        For email requests, after removal you will receive a confirmation message stating that all data linked
+        to your account has been permanently deleted, except for the technical records temporarily retained as described above.
+      </p>
+    </div>
+
+    <div data-lang="es">
+      <h2>Solicitud de Eliminación de Datos</h2>
+
+      <h3>1. Cómo solicitar la eliminación</h3>
+      <p>Ahora puedes eliminar tu cuenta directamente desde la aplicación de forma inmediata:</p>
+      <ul>
+        <li>Abre <strong>Jogo da Forca Interativo</strong> y asegúrate de haber iniciado sesión;</li>
+        <li>Toca el ícono en la esquina superior derecha de la pantalla;</li>
+        <li>Selecciona <strong>“Eliminar Cuenta”</strong>;</li>
+        <li>Confirma la acción cuando se solicite.</li>
+      </ul>
+      <p>La eliminación se realizará inmediatamente después de la confirmación.</p>
+
+      <p>Si ya no tienes acceso a la aplicación o a la cuenta iniciada, también puedes solicitar la eliminación por correo electrónico:</p>
+      <p><strong>📧 k19tech@gmail.com</strong></p>
+
+      <p>En el correo, incluye:</p>
+      <ul>
+        <li>Tu correo de inicio de sesión</li>
+        <li>Nombre de la aplicación: <strong>Jogo da Forca Interativo</strong></li>
+        <li>La frase: “Solicito la eliminación de mis datos.”</li>
+      </ul>
+
+      <h3>2. Qué se eliminará</h3>
+      <ul>
+        <li>Cuenta de autenticación (correo/UID)</li>
+        <li>Puntuaciones e historial de sesiones</li>
+        <li>Preferencias personalizadas</li>
+        <li>Datos vinculados a tu usuario en la base de datos</li>
+      </ul>
+
+      <h3>3. Qué puede conservarse temporalmente</h3>
+      <p>Algunos registros técnicos pueden conservarse hasta por 30 días por requisitos operativos:</p>
+      <ul>
+        <li>Registros anonimizados</li>
+        <li>Reportes de error (Crashlytics)</li>
+      </ul>
+
+      <h3>4. Confirmación de la eliminación</h3>
+      <p>
+        Al usar <strong>“Eliminar Cuenta”</strong> dentro de la app, la eliminación se realiza de inmediato,
+        y tus datos dejan de utilizarse en el juego.
+      </p>
+      <p>
+        Para solicitudes por correo, después de la eliminación recibirás un mensaje confirmando que todos los datos
+        vinculados a tu cuenta fueron eliminados permanentemente, excepto los registros técnicos conservados temporalmente
+        según se describe arriba.
+      </p>
+    </div>
   </section>
 
 </main>
 
 <footer>
-  &copy; <span id="year"></span> Jogo da Forca Interativo — Todos os direitos reservados.
+  &copy; <span id="year"></span>
+  <span data-lang="pt-BR" class="active">Jogo da Forca Interativo — Todos os direitos reservados.</span>
+  <span data-lang="en">Jogo da Forca Interativo — All rights reserved.</span>
+  <span data-lang="es">Jogo da Forca Interativo — Todos los derechos reservados.</span>
 </footer>
 
 <script>
+  // Year
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  const STORAGE_KEY = "jfi_lang";
+  const supported = ["pt-BR", "en", "es"];
+
+  function normalizeLang(input) {
+    if (!input) return null;
+    input = input.toLowerCase();
+
+    if (input === "pt" || input === "pt-br") return "pt-BR";
+    if (input === "en") return "en";
+    if (input === "es") return "es";
+
+    return null;
+  }
+
+  function getLangFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    return normalizeLang(params.get("lang"));
+  }
+
+  function setLang(lang) {
+    if (!supported.includes(lang)) lang = "pt-BR";
+
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll("[data-lang]").forEach(el => {
+      el.classList.toggle("active", el.getAttribute("data-lang") === lang);
+    });
+
+    document.querySelectorAll("[data-set-lang]").forEach(btn => {
+      btn.setAttribute(
+        "aria-pressed",
+        btn.getAttribute("data-set-lang") === lang ? "true" : "false"
+      );
+    });
+
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch (_) {}
+  }
+
+  (function init() {
+    // Priority order:
+    // 1) Query string (?lang=)
+    // 2) localStorage
+    // 3) Browser language
+    let lang =
+      getLangFromQuery() ||
+      (() => {
+        try {
+          return normalizeLang(localStorage.getItem(STORAGE_KEY));
+        } catch (_) {
+          return null;
+        }
+      })() ||
+      (() => {
+        const nav = (navigator.language || "").toLowerCase();
+        if (nav.startsWith("pt")) return "pt-BR";
+        if (nav.startsWith("es")) return "es";
+        if (nav.startsWith("en")) return "en";
+        return "pt-BR";
+      })();
+
+    setLang(lang);
+  })();
 </script>
 </body>
 </html>
